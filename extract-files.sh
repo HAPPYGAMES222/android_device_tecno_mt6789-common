@@ -128,7 +128,7 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             sed -i 's|ro.vendor.mtk_thermal_2_0|vendor.thermal.link_ready|g' "${2}"
            ;;
-        vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml)
+        vendor/etc/vintf/manifest/manifest_media_c2_V1_1_default.xml)
             sed -i 's/1.1/1.2/' "$2"
             ;;
     esac
