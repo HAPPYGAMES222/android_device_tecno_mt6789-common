@@ -1,4 +1,4 @@
-## LG8n package version: LG8n-H891OPAeAf-S-GL-240531V2678, unless stated otherwise
+## li7 package version: LI7-H897STUV-U-OP-240304V783, unless stated otherwise
 
 # AEE
 vendor/lib/libaedv.so
