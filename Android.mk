@@ -22,6 +22,11 @@ $(AUDIO_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) echo "Linking $@"
 	@ln -sf $(subst $(TARGET_BOARD_PLATFORM),mediatek,$(notdir $@)) $@
 
+CAMERA_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/, $(strip $(shell cat $(DEVICE_PATH)/symlink/camera.txt)))
+$(CAMERA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	$(hide) echo "Linking $(notdir $@)"
+	@ln -sf $(TARGET_BOARD_PLATFORM)/$(notdir $@) $@
+
 DISPLAY_SYMLINKS := \
 	$(TARGET_OUT_VENDOR)/bin/hw/android.hardware.graphics.allocator@4.0-service-mediatek
 
@@ -65,13 +70,14 @@ $(SENSOR_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) echo "Linking $(notdir $@)"
 	@ln -sf sensors.mediatek.V2.0.so $@
 
-VENDOR_PLATFORM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/, $(strip $(shell cat $(COMMON_PATH)/symlink/vendor.txt)))
+VENDOR_PLATFORM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/, $(strip $(shell cat $(DEVICE_PATH)/symlink/vendor.txt)))
 $(VENDOR_PLATFORM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) echo "Linking $(notdir $@)"
 	@ln -sf $(TARGET_BOARD_PLATFORM)/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += \
 	$(AUDIO_SYMLINKS) \
+	$(CAMERA_SYMLINKS) \
 	$(DISPLAY_SYMLINKS) \
 	$(GATEKEEPER_TRUSTONIC_SYMLINKS) \
 	$(GATEKEEPER_DEFAULT_SYMLINKS) \
